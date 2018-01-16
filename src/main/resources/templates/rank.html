@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(title = '排行榜')">
+</head>
+<body>
+<header th:replace="fragment :: header"></header>
+<!--/*@thymesVar id="user" type="com.zhxq.domain.User"*/-->
+<main>
+    <div class="container">
+        <div id="title">
+            <h5>排行榜</h5>
+        </div>
+        <div>
+            <form th:action="@{/getrank}" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th data-field="id">Userid</th>
+                        <th data-field="grade">Grade</th>
+                        <th data-field="rank">Rank</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--/*@thymesVar id="user" type="java.util.List<com.zhxq.domain.User>"*/-->
+                    <tr th:each="user :${user}">
+                        <td th:text="${user.getuserid()}"></td>
+                        <td th:text="${user.getgrade()}"></td>
+                        <td th:text="${user.getRank()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+
+    </div>
+</main>
+<footer th:replace="fragment :: footer"></footer>
+</body>
+</html>

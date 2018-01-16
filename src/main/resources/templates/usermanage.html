@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragment :: head(title = '成绩管理')">
+</head>
+
+<body>
+<header th:replace="fragment :: header"></header>
+<main>
+        <div class="row" style="margin-top: 15px">
+            <!--/*@thymesVar id="useradd" type="com.zhxq.domain.User"*/-->
+            <div class="col s12 m6 container">
+                <form th:action="@{/adduser}" th:method="post" th:object="${useradd}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="username" type="text" th:field="*{username}" class="validate" />
+                            <label for="username">Name</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px">
+                        <div class="input-field col s12">
+                            <input id="class" type="text" th:field="*{userclass}" class="validate" />
+                            <label for="class">Class</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px">
+                        <div class="input-field col s12">
+                            <input id="userid" type="text" th:field="*{userid}" class="validate"  />
+                            <label for="userid">UserID</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" th:field="*{password}" class="validate"  />
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px">
+                        <div class="input-field col s12">
+                            <input id="confirm_password" type="password" class="validate" />
+                            <label for="confirm_password">Confirm Password</label>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            <i class="fa fa-check"></i>
+                        </button>
+                    </div>
+                </form>
+             </div>
+            <div class="col s12 m4">
+                <!--/*@thymesVar id="usersearch" type="com.zhxq.domain.User"*/-->
+                <form th:action="@{/searchuser}" method="post">
+                <input placeholder="SearchuserId" id="first_userid" name="userid" type="text" class="validate" />
+                <div class="col s12 m2">
+                    <button class="waves-effect waves-light btn" type="submit">Search</button>
+                </div>
+                </form>
+            <form th:action="@{/deleteuser}" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th data-field="username">username</th>
+                        <th data-field="userclass">userclass</th>
+                        <th data-field="userid">userid</th>
+                        <th data-field="grade">grade</th>
+                        <th data-field="rank">rank</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${usersearch.getusername()}"></td>
+                        <td th:text="${usersearch.getuserclass()}"></td>
+                        <td th:text="${usersearch.getuserid()}"></td>
+                        <td th:text="${usersearch.getgrade()}"></td>
+                        <td th:text="${usersearch.getRank()}"></td>
+                        <td>
+                            <button class="waves-effect waves-light btn" type="submit" name="userid" th:value="${usersearch.getuserid()}">Delete
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            </div>
+        </div>
+
+</main>
+<footer th:replace="fragment :: footer"></footer>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/manage.js}"></script>
+</body>
+
+</html>

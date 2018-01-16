@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(title = '主页')">
+</head>
+<body>
+<header th:replace="fragment :: header"></header>
+<main>
+    <div class="container">
+        <div id="title">
+            <h5>考试管理系统</h5>
+            <img th:src="@{/img/test.jpg}" align="middle"/>
+        </div>
+
+
+        <div id="infomation">
+            <h5>点击<a th:href="@{/register}">注册</a>参加考试</h5>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragment :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="fragment :: head(title = '个人信息')">
+</head>
+<body>
+<header th:replace="fragment :: header"></header>
+<!--/*@thymesVar id="user" type="com.zhxq.domain.User"*/-->
+<main>
+    <div class="container">
+        <div id="title">
+            <h5>个人中心</h5>
+            <!--/*@thymesVar id="status" type="java.lang.Boolean"*/-->
+            <h8 th:if="${status != null}" th:text="${status} ? '修改成功' : '修改失败, 请检查是否填写有误'"></h8>
+        </div>
+
+        <!--<h5 th:text="${user.toString()}"></h5>-->
+        <form th:action="@{/profile}" method="post" th:object="${user}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled="disabled" id="username" type="text" class="validate" th:field="*{username}"/>
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="userclass" type="text" class="validate" th:field="*{userclass}"/>
+                    <label for="userclass">Userclass</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled="disabled" id="userid" type="text" class="validate" th:field="*{userid}"/>
+                    <label for="userid">Userid</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled="disabled" id="rank" type="text" class="validate" th:field="*{rank}"/>
+                    <label for="rank">Rank</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled="disabled" id="grade" type="text" class="validate" th:field="*{grade}"/>
+                    <label for="grade">Grade</label>
+                </div>
+            </div>
+
+            <div class="submit">
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+        </form>
+
+    </div>
+</main>
+<footer th:replace="fragment :: footer"></footer>
+</body>
+</html>
